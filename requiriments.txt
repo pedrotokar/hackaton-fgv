@@ -1,3 +1,7 @@
 pandas
 pandas_gbq
+geopandas
 db-dtypes
+pydeck
+altair
+matplotlib
