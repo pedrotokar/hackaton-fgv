@@ -19,7 +19,7 @@ df.insert(1, "quantificacao_gravidade", quantificacao_gravidade)
 df['quantificacao_gravidade'].replace({'Baixa': 1, 'Média': 2, 'Alta': 3, 'Crítica' : 4}, inplace=True)
 
 # Criar o gráfico com o filtro interativo
-fig = px.histogram(df, x='data_inicio', color='id_pop', marginal='rug', nbins=40)
+fig = px.histogram(df, x='data_inicio', color='id_pop', marginal='rug', nbins=120)
 
 # Adicionar filtro interativo
 fig.update_layout(
