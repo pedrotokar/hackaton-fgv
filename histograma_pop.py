@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 
-df = pd.read_csv("gravidade_pops.csv")
+df = pd.read_csv("dados/gravidade_pops.csv")
 df['id_pop'].replace({6: 31, 33:5}, inplace=True)
 
 # Substituir os valores na coluna 'gravidade' conforme acentos e concordância

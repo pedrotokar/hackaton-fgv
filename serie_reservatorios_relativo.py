@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 
-df = pd.read_csv(r"C:\Users\laris\OneDrive\Documentos\hackaton-fgv\dados\drenagem_reservatorios.csv")
+df = pd.read_csv(r"dados\drenagem_reservatorios.csv")
 
 df['data_hora'] = pd.to_datetime(df['data_particao'] + ' ' + df['horario'])
 
