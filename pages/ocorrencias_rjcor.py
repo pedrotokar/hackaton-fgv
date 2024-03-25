@@ -8,6 +8,7 @@ import datetime
 from core.scripts import get_data
 
 import streamlit as st
+from datetime import date
 
 from default import default_style
 
@@ -107,7 +108,9 @@ def monta_mapa(layers):
     map_style = "dark_no_labels"
 )
 
-dados = retorna_dados_pela_data("2023-06-01")
+data = st.date_input("A partir de", value = date(2024, 1, 1), min_value = date(2014, 1, 1), max_value = date.today(), format="DD/MM/YYYY")
+
+dados = retorna_dados_pela_data(data.strftime("%Y-%m-%d"))
 st.write("Selecione quais tipos de chamado você quer visualizar.")
 chamados_abertos = st.checkbox("Chamados Abertos")
 chamados_fechados = st.checkbox("Chamados fechados")
