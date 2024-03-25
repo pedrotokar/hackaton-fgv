@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import folium
 from folium import plugins
-
+from core.scripts import get_data
 from streamlit_folium import st_folium
 
 import streamlit as st
@@ -84,7 +84,7 @@ st.write("""
         """)
 
 
-result_dataframe_inea = pandas_gbq.read_gbq(query_inea, project_id = "hackaton-fgv")
+result_dataframe_inea = get_data(query_inea, project_id = "hackaton-fgv")
 result_dataframe_inea['id_estacao'] = result_dataframe_inea['id_estacao'].astype(str)
 
 df_inea = pd.read_csv('dados/tabelas/df_inea.csv')
@@ -97,7 +97,7 @@ for coluna in novas_colunas_inea:
 df_inea[novas_colunas_inea] = df_inea[novas_colunas_inea].fillna('Não há dados')
 
 # WEBSIRENE
-result_dataframe_websirene = pandas_gbq.read_gbq(query_websirene, project_id = "hackaton-fgv")
+result_dataframe_websirene = get_data(query_websirene, project_id = "hackaton-fgv")
 result_dataframe_websirene['id_estacao'] = result_dataframe_websirene['id_estacao'].astype(str)
 df_websirene = pd.read_csv('dados/tabelas/df_websirene.csv')
 df_websirene['id_estacao'] = df_websirene['id_estacao'].astype(str)
@@ -108,7 +108,7 @@ for coluna in novas_colunas_websirene:
 df_websirene[novas_colunas_websirene] = df_websirene[novas_colunas_websirene].fillna('Não há dados')
 
 # ALERTÁRIO
-result_dataframe_alertario = pandas_gbq.read_gbq(query_alertario, project_id = "hackaton-fgv")
+result_dataframe_alertario = get_data(query_alertario, project_id = "hackaton-fgv")
 result_dataframe_alertario['id_estacao'] = result_dataframe_alertario['id_estacao'].astype(str)
 df_alertario = pd.read_csv('dados/tabelas/df_alertario.csv')
 df_alertario['id_estacao'] = df_alertario['id_estacao'].astype(str)
@@ -119,7 +119,7 @@ for coluna in novas_colunas_alertario:
 df_alertario[novas_colunas_alertario] = df_alertario[novas_colunas_alertario].fillna('Não há dados')
 
 # CEMADEN
-result_dataframe_cemaden = pandas_gbq.read_gbq(query_cemaden, project_id = "hackaton-fgv")
+result_dataframe_cemaden = get_data(query_cemaden, project_id = "hackaton-fgv")
 result_dataframe_cemaden['id_estacao'] = result_dataframe_cemaden['id_estacao'].astype(str)
 df_cemaden = pd.read_csv('dados/tabelas/df_cemaden.csv')
 df_cemaden['id_estacao'] = df_cemaden['id_estacao'].astype(str)
@@ -190,5 +190,6 @@ legend_html = '''
      '''
 
 m.get_root().html.add_child(folium.Element(legend_html))
-
+st.markdown(legend_html, unsafe_allow_html=True)
 st_folium(m, width=1000)
+
