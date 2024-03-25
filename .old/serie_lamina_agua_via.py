@@ -1,7 +1,7 @@
 import pandas as pd
 import plotly.express as px
 
-df = pd.read_csv(r"C:\Users\laris\Downloads\lamina_agua_via.csv")
+df = pd.read_csv(r"dados\lamina_agua_via.csv")
 
 #df['data_hora'] = pd.to_datetime(df['data_particao'] + ' ' + df['horario'])
 

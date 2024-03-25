@@ -1,7 +1,7 @@
 import pandas as pd
 import plotly.express as px
 
-df = pd.read_csv(r"dados\fluviometro_inea2.csv")
+df = pd.read_csv(r"dados/fluviometro_inea2.csv")
 df['data_medicao'] = pd.to_datetime(df['data_medicao'])
 df = df.sort_values(by="data_medicao")
 
