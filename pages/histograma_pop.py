@@ -78,4 +78,9 @@ fig.update_xaxes(ticks='outside')
 
 st.plotly_chart(fig)
 
-st.dataframe(df, width=1000, height=300)
+columns = list(df.columns)
+
+selected = st.multiselect("Selecione os dados", options=columns, default=columns)
+
+if selected:
+    st.dataframe(df[selected], width=1000, height=300)
