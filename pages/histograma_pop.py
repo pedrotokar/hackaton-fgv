@@ -10,6 +10,12 @@ from default import default_style
 
 default_style()
 
+st.write("""
+        # Distribuição de ocorrências POP
+         
+        A visualização acima apresenta um histograma interativo que permite explorar a distribuição das ocorrências de Procedimento Operacional Padrão (POP) ao longo do tempo, categorizando por gravidade e tipo de ocorrência. Essa análise facilita a identificação de padrões sazonais e a compreensão das ocorrências críticas, auxiliando na tomada de decisões para prevenção e gestão de emergências.
+        """)
+
 df = pd.read_csv(r"dados/tabelas/gravidade_pops.csv")
 
 # Mapeando os valores numéricos para os nomes correspondentes
@@ -71,3 +77,5 @@ fig.update_layout(title='Distribuição de ocorrências POP',
 fig.update_xaxes(ticks='outside')
 
 st.plotly_chart(fig)
+
+st.dataframe(df, width=1000, height=300)
