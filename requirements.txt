@@ -2,7 +2,6 @@ altair==5.2.0
 folium==0.16.0
 geopandas==0.14.0
 mapclassify==2.6.1
-matplotlib==3.8.2
 matplotlib==3.8.3
 numpy==1.26.4
 pandas==2.2.1
