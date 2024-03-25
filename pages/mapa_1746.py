@@ -6,6 +6,7 @@ import pydeck as pdk
 import json
 
 import streamlit as st
+from datetime import date
 
 from default import default_style
 
@@ -184,7 +185,9 @@ def monta_mapa(layers):
     )
     return mapa
 
-dados = retorna_dados_pela_data("2023-06-01")
+data = st.date_input("A partir de", value = date(2024, 1, 1), min_value = date(2014, 1, 1), max_value = date.today(), format="DD/MM/YYYY")
+
+dados = retorna_dados_pela_data(data.strftime("%Y-%m-%d"))
 
 selecionados = st.radio("Selecione o tipo de chamado para ver os dados", ["Chamados 1746", "Chamados RJcor"])
 layer = []
