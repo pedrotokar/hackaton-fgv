@@ -2,6 +2,10 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+from default import default_style
+
+default_style()
+
 st.write("""
         # Altura Máxima da Lâmina D'Água em Via por Dia
 

@@ -9,6 +9,10 @@ from core.scripts import get_data
 
 import streamlit as st
 
+from default import default_style
+
+default_style()
+
 st.write("""
          # Ocorrências do Centro de Operações Rio (COR)
 

@@ -3,6 +3,10 @@ import streamlit as st
 import plotly.express as px
 import streamlit as st
 
+from default import default_style
+
+default_style()
+
 st.write("""
          # Altura da Água em Fluviômetros do INEA
          

@@ -5,8 +5,12 @@ import plotly.figure_factory as ff
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px 
+import streamlit as st
+from default import default_style
 
-df = pd.read_csv(r"dados\gravidade_pops.csv")
+default_style()
+
+df = pd.read_csv(r"dados/tabelas/gravidade_pops.csv")
 
 # Mapeando os valores numéricos para os nomes correspondentes
 mapa_nomes = {6.0: "Alagamento", 5.0: "Bolsão D'Água", 31.0: "Alagamento", 32.0: "Enchente", 33.0: "Enchente"}
@@ -66,4 +70,4 @@ fig.update_layout(title='Distribuição de ocorrências POP',
 
 fig.update_xaxes(ticks='outside')
 
-fig.show()
+st.plotly_chart(fig)

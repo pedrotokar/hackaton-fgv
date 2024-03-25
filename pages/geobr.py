@@ -14,6 +14,10 @@ from streamlit_folium import st_folium
 
 import streamlit as st
 
+from default import default_style
+
+default_style()
+
 st.write("""
         # Monitoramento de Chuvas no Rio de Janeiro
          

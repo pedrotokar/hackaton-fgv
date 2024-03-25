@@ -7,6 +7,10 @@ import pydeck as pdk
 import json
 import streamlit as st
 
+from default import default_style
+
+default_style()
+
 st.write("""
          # Pontos críticos de alagamento e drenagem do Rio de Janeiro
          
