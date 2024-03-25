@@ -7,6 +7,12 @@ import json
 
 import streamlit as st
 
+st.write("""
+        # Ocorrências do Centro de Operações Rio (COR)
+         
+        A visualização abaixo apresenta um mapa interativo que permite a análise comparativa da distribuição geográfica de chamados de dois sistemas distintos de atendimento a ocorrências na cidade do Rio de Janeiro: o sistema 1746 e o sistema RJcor. Isso pode ser crucial para identificar padrões de demanda, áreas com maior incidência de problemas e disparidades no atendimento entre diferentes regiões, fornecendo insights valiosos para melhorias nos serviços municipais e no planejamento urbano.
+        """)
+
 def retorna_query_1746(data):
     return f"""SELECT *
     FROM datario.adm_central_atendimento_1746.chamado

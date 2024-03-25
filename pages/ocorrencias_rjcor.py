@@ -9,6 +9,12 @@ from core.scripts import get_data
 
 import streamlit as st
 
+st.write("""
+         # Ocorrências do Centro de Operações Rio (COR)
+
+         O Centro de Operações Rio (COR) desempenha um papel vital na gestão de crises e tomada de decisões em situações de emergência na cidade do Rio de Janeiro, especialmente no contexto hidrológico. Integrando informações de diversas fontes e utilizando tecnologias avançadas de monitoramento, o COR fornece dados precisos e em tempo real sobre condições hidrológicas, permitindo ações preventivas e de resposta a eventos como inundações e deslizamentos, contribuindo assim para a proteção da vida e da propriedade dos cidadãos cariocas.
+         """)
+
 
 def retorna_query(data):
     return f"""SELECT *

@@ -2,6 +2,12 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+st.write("""
+        # Altura Máxima da Lâmina D'Água em Via por Dia
+
+        Monitorar o nível da água em vias é fundamental por várias razões: garantir a segurança viária ao evitar acidentes causados por águas acumuladas, prevenir danos estruturais e erosão, prever e alertar sobre inundações, e facilitar o planejamento urbano sustentável. Essa prática é crucial para proteger vidas, propriedades e promover cidades resilientes diante de desafios hidrológicos.
+        """)
+
 df = pd.read_csv(r"dados/tabelas/lamina_agua_via.csv")
 
 #df['data_hora'] = pd.to_datetime(df['data_particao'] + ' ' + df['horario'])
@@ -23,3 +29,5 @@ fig.update_layout(title='Altura Máxima da Lâmina D\'Água em Via por Dia',
 fig.update_xaxes(ticks='outside')
 
 st.plotly_chart(fig)
+
+st.dataframe(df, width=1000, height=300)

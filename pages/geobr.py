@@ -10,6 +10,15 @@ import plotly.graph_objects as go
 import folium
 from folium import plugins
 
+from streamlit_folium import st_folium
+
+import streamlit as st
+
+st.write("""
+        # Monitoramento de Chuvas no Rio de Janeiro
+         
+         A visualização acima apresenta um mapa interativo que exibe diferentes estações de monitoramento de chuvas em cores distintas, permitindo uma análise espacial das precipitações em tempo real provenientes de diferentes fontes, como WEBSIRENE, Alertário, INEA e CEMADEN. Essa visão integrada é essencial para entender a distribuição das chuvas na região e auxiliar na tomada de decisões em situações de risco, como prevenção de enchentes e deslizamentos de terra.
+        """)
 
 query_inea = """
         WITH mais_recentes AS (
@@ -64,11 +73,20 @@ query_alertario = """
 
 # Organizando os datasets
 # INEA
+
+st.write("""
+        #
+         
+        """)
+
+
 result_dataframe_inea = pandas_gbq.read_gbq(query_inea, project_id = "hackaton-fgv")
 result_dataframe_inea['id_estacao'] = result_dataframe_inea['id_estacao'].astype(str)
-df_inea = pd.read_csv('df_inea.csv')
+
+df_inea = pd.read_csv('dados/tabelas/df_inea.csv')
 df_inea['id_estacao'] = df_inea['id_estacao'].astype(str)
 df_inea = pd.merge(df_inea, result_dataframe_inea, on='id_estacao', how='left')
+
 novas_colunas_inea = ['acumulado_chuva_15_min', 'acumulado_chuva_1_h', 'acumulado_chuva_24_h']
 for coluna in novas_colunas_inea:
     df_inea[coluna] = df_inea[coluna].apply(lambda x: str(x) + ' mm' if pd.notna(x) else x)
@@ -77,7 +95,7 @@ df_inea[novas_colunas_inea] = df_inea[novas_colunas_inea].fillna('Não há dados
 # WEBSIRENE
 result_dataframe_websirene = pandas_gbq.read_gbq(query_websirene, project_id = "hackaton-fgv")
 result_dataframe_websirene['id_estacao'] = result_dataframe_websirene['id_estacao'].astype(str)
-df_websirene = pd.read_csv('df_websirene.csv')
+df_websirene = pd.read_csv('dados/tabelas/df_websirene.csv')
 df_websirene['id_estacao'] = df_websirene['id_estacao'].astype(str)
 df_websirene = pd.merge(df_websirene, result_dataframe_websirene, on='id_estacao', how='left')
 novas_colunas_websirene = ['acumulado_chuva_15_min', 'acumulado_chuva_1_h', 'acumulado_chuva_24_h']
@@ -88,7 +106,7 @@ df_websirene[novas_colunas_websirene] = df_websirene[novas_colunas_websirene].fi
 # ALERTÁRIO
 result_dataframe_alertario = pandas_gbq.read_gbq(query_alertario, project_id = "hackaton-fgv")
 result_dataframe_alertario['id_estacao'] = result_dataframe_alertario['id_estacao'].astype(str)
-df_alertario = pd.read_csv('df_alertario.csv')
+df_alertario = pd.read_csv('dados/tabelas/df_alertario.csv')
 df_alertario['id_estacao'] = df_alertario['id_estacao'].astype(str)
 df_alertario = pd.merge(df_alertario, result_dataframe_alertario, on='id_estacao', how='left')
 novas_colunas_alertario = ['acumulado_chuva_5min', 'acumulado_chuva_1h', 'acumulado_chuva_24h']
@@ -99,7 +117,7 @@ df_alertario[novas_colunas_alertario] = df_alertario[novas_colunas_alertario].fi
 # CEMADEN
 result_dataframe_cemaden = pandas_gbq.read_gbq(query_cemaden, project_id = "hackaton-fgv")
 result_dataframe_cemaden['id_estacao'] = result_dataframe_cemaden['id_estacao'].astype(str)
-df_cemaden = pd.read_csv('df_cemaden.csv')
+df_cemaden = pd.read_csv('dados/tabelas/df_cemaden.csv')
 df_cemaden['id_estacao'] = df_cemaden['id_estacao'].astype(str)
 df_cemaden = pd.merge(df_cemaden, result_dataframe_cemaden, on='id_estacao', how='left')
 novas_colunas_cemaden = ['acumulado_chuva_10_min', 'acumulado_chuva_1_h', 'acumulado_chuva_24_h']
@@ -169,5 +187,4 @@ legend_html = '''
 
 m.get_root().html.add_child(folium.Element(legend_html))
 
-# Salvando o mapa como HTML
-m.save('mapa_interativo.html')
+st_folium(m, width=1000)

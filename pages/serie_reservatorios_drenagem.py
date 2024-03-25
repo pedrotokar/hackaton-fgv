@@ -3,6 +3,12 @@ import plotly.graph_objects as go
 import plotly.express as px
 import streamlit as st
 
+st.write("""
+        # Altura da Água em Reservatórios de Drenagem
+         
+         O Instituto Estadual do Ambiente (INEA) do Rio de Janeiro monitora a altura da água nos fluviômetros para diversas finalidades, incluindo o acompanhamento de cheias e inundações, a previsão de eventos climáticos extremos, a gestão dos recursos hídricos, o controle da qualidade da água e o planejamento de infraestrutura hidráulica. Essa análise é crucial para alertar sobre riscos, planejar intervenções e garantir a sustentabilidade ambiental e a segurança da população.
+        """)
+
 df = pd.read_csv(r"dados/tabelas/drenagem_reservatorios.csv")
 
 df['data_hora'] = pd.to_datetime(df['data_particao'] + ' ' + df['horario'])
@@ -36,4 +42,4 @@ fig.add_shape(type="line", showlegend=True, legendgroup="Níveis de Alerta", nam
 
 st.plotly_chart(fig)
 
-
+st.dataframe(df, width=1000, height=300)

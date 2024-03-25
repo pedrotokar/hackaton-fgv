@@ -5,6 +5,13 @@ import altair as alt
 import matplotlib as mpl
 import pydeck as pdk
 import json
+import streamlit as st
+
+st.write("""
+         # Pontos críticos de alagamento e drenagem do Rio de Janeiro
+         
+         A visualização abaixo apresenta um mapa interativo que permite a análise dos pontos críticos de alagamento e drenagem da cidade do Rio de Janeiro. Através da identificação desses pontos, é possível planejar ações preventivas e de resposta a eventos como inundações, contribuindo para a proteção da população e dos recursos urbanos.
+         """)
 
 query = """SELECT *
     FROM rj-rioaguas.saneamento_drenagem.ponto_supervisionado_alagamento""" # Coloquei um limite pra não gastar 3GB do google quando for puxar
@@ -55,7 +62,7 @@ base = pdk.Layer(
 drenagens_nao_resolvidas = pdk.Layer(
     "ScatterplotLayer",
     drenagem[["latitude", "longitude", "coloracao", "endereco_ponto_supervisionado", "bairro", 
-        "sub_bacia_hidrografica", "medida", "descricao", "eliminado"]][drenagem["classe"] == "Ponto critico" | drenagem["classe"] == "Ponto observado"],
+        "sub_bacia_hidrografica", "medida", "descricao", "eliminado"]][(drenagem["classe"] == "Ponto critico") | (drenagem["classe"] == "Ponto observado")],
     get_position = ["longitude", "latitude"],
     auto_highlight = True,
     get_radius = 200,
@@ -76,7 +83,7 @@ drenagens_resolvidas = pdk.Layer(
 
 
 mapa = pdk.Deck(
-    layers = [base, drenagens], 
+    layers = [base, drenagens_nao_resolvidas], 
     initial_view_state = camera_inicial,
     tooltip = {"html": "<b>Endereço:</b> {endereco_ponto_supervisionado} - {bairro}"\
                "<br><b>Sub bacia hidrografica:</b> {sub_bacia_hidrografica}<br>"\
@@ -90,4 +97,4 @@ mapa = pdk.Deck(
     map_style = "dark_no_labels"
 )
 
-mapa.to_html("geojson_layer.html")
+st.pydeck_chart(mapa)

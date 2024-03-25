@@ -7,6 +7,12 @@ import seaborn as sns
 import plotly.express as px
 import streamlit as st
 
+st.write("""
+        # Distribuição de ocorrências de Procedimentos Operacionais Padrão (POPs)
+         
+        Os Procedimentos Operacionais Padrão (POPs) são documentos que descrevem passo a passo como realizar atividades específicas de forma padronizada e consistente, garantindo eficiência e segurança. No contexto do COR, os POPs são essenciais para registrar e gerenciar operações, sendo classificados por cores que representam tipos diferentes de procedimentos, com a altura das barras indicando a quantidade realizada em um determinado momento. Essa organização facilita a gestão e permite filtrar os POPs por gravidade e tipo de procedimento.
+        """)
+
 df = pd.read_csv("dados/tabelas/gravidade_pops.csv")
 df['id_pop'].replace({6: 31, 33:5}, inplace=True)
 
@@ -70,3 +76,4 @@ fig.update_traces(name="Bolsão D'Água em Via (POP 5)", selector=dict(name='5')
 fig.update_xaxes(ticks='outside')
 
 st.plotly_chart(fig)
+df
