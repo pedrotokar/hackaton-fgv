@@ -5,8 +5,9 @@ import plotly.figure_factory as ff
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
+import streamlit as st
 
-df = pd.read_csv("gravidade_pops.csv")
+df = pd.read_csv("dados/tabelas/gravidade_pops.csv")
 df['id_pop'].replace({6: 31, 33:5}, inplace=True)
 
 # Substituir os valores na coluna 'gravidade' conforme acentos e concordância
@@ -68,4 +69,4 @@ fig.update_traces(name='Alagamento (POP 31)', selector=dict(name='31'))
 fig.update_traces(name="Bolsão D'Água em Via (POP 5)", selector=dict(name='5'))
 fig.update_xaxes(ticks='outside')
 
-fig.show()
+st.plotly_chart(fig)
