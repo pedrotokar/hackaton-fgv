@@ -19,3 +19,9 @@ Após isso, tudo já deve estar configurado. Para rodar, use o comando
 ```bash
 $ streamlit run Home.py
 ```
+
+## Autenticação
+
+Para que todas as visualizações sejam mostradas sem problemas, é necessário que você tenha disponível uma conta gmail com acesso às tabelas privilegiadas.
+Quando uma query for feita, uma janela de autenticação será aberta. Você deverá selecionar sua conta gmail  com o acesso necessário. Após isso, não será mais
+necessário autenticar, já que as informações ficarão armazenadas em seu computador.
