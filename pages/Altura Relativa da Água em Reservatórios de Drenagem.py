@@ -7,7 +7,7 @@ from default import default_style
 default_style()
 
 st.write("""
-        # Altura da Água em Reservatórios de Drenagem
+        # Altura Relativa da Água em Reservatórios de Drenagem
          
         O Instituto Estadual do Ambiente (INEA) do Rio de Janeiro monitora a altura da água nos fluviômetros para diversas finalidades, incluindo o acompanhamento de cheias e inundações, a previsão de eventos climáticos extremos, a gestão dos recursos hídricos, o controle da qualidade da água e o planejamento de infraestrutura hidráulica. Essa análise é crucial para alertar sobre riscos, planejar intervenções e garantir a sustentabilidade ambiental e a segurança da população.
         """)

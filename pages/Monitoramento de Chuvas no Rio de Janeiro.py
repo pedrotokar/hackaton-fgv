@@ -21,7 +21,7 @@ default_style()
 st.write("""
         # Monitoramento de Chuvas no Rio de Janeiro
          
-         A visualização acima apresenta um mapa interativo que exibe diferentes estações de monitoramento de chuvas em cores distintas, permitindo uma análise espacial das precipitações em tempo real provenientes de diferentes fontes, como WEBSIRENE, Alertário, INEA e CEMADEN. Essa visão integrada é essencial para entender a distribuição das chuvas na região e auxiliar na tomada de decisões em situações de risco, como prevenção de enchentes e deslizamentos de terra.
+         A visualização abaixo apresenta um mapa interativo que exibe diferentes estações de monitoramento de chuvas em cores distintas, permitindo uma análise espacial das precipitações em tempo real provenientes de diferentes fontes, como WEBSIRENE, Alertário, INEA e CEMADEN. Essa visão integrada é essencial para entender a distribuição das chuvas na região e auxiliar na tomada de decisões em situações de risco, como prevenção de enchentes e deslizamentos de terra.
         """)
 
 query_inea = """
