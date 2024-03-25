@@ -4,23 +4,17 @@ import plotly.graph_objs as go
 import plotly.figure_factory as ff
 import matplotlib.pyplot as plt
 import seaborn as sns
-import plotly.express as px
-import streamlit as st
+import plotly.express as px 
 
-st.write("""
-        # Distribuição de ocorrências de Procedimentos Operacionais Padrão (POPs)
-         
-        Os Procedimentos Operacionais Padrão (POPs) são documentos que descrevem passo a passo como realizar atividades específicas de forma padronizada e consistente, garantindo eficiência e segurança. No contexto do COR, os POPs são essenciais para registrar e gerenciar operações, sendo classificados por cores que representam tipos diferentes de procedimentos, com a altura das barras indicando a quantidade realizada em um determinado momento. Essa organização facilita a gestão e permite filtrar os POPs por gravidade e tipo de procedimento.
-        """)
+df = pd.read_csv(r"dados\gravidade_pops.csv")
 
-df = pd.read_csv("dados/tabelas/gravidade_pops.csv")
-df['id_pop'].replace({6: 31, 33:5}, inplace=True)
+# Mapeando os valores numéricos para os nomes correspondentes
+mapa_nomes = {6.0: "Alagamento", 5.0: "Bolsão D'Água", 31.0: "Alagamento", 32.0: "Enchente", 33.0: "Enchente"}
+df['id_pop'] = df['id_pop'].map(mapa_nomes)
 
-# Substituir os valores na coluna 'gravidade' conforme acentos e concordância
 df['gravidade'].replace({'Medio': 'Média', 'Médio': 'Média',
                                         'Normal': 'Média', 'Baixo':'Baixa', 'Critico':'Crítica', 'Alto': 'Alta'}, inplace=True)
 
-# Adicionando uma coluna de quantificação de gravidade por evento
 quantificacao_gravidade = df['gravidade']
 df.insert(1, "quantificacao_gravidade", quantificacao_gravidade)
 df['quantificacao_gravidade'].replace({'Baixa': 1, 'Média': 2, 'Alta': 3, 'Crítica' : 4}, inplace=True)
@@ -70,10 +64,6 @@ fig.update_layout(title='Distribuição de ocorrências POP',
     template='ygridoff'
 )
 
-fig.update_traces(name='Enchente (POP 32)', selector=dict(name='32'))
-fig.update_traces(name='Alagamento (POP 31)', selector=dict(name='31'))
-fig.update_traces(name="Bolsão D'Água em Via (POP 5)", selector=dict(name='5'))
 fig.update_xaxes(ticks='outside')
 
-st.plotly_chart(fig)
-df
+fig.show()
